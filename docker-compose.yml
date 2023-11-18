@@ -21,19 +21,19 @@ services:
     ports:
       - "5678:5678"
   db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: mydatabase
-    ports:
-      - "3306:3306"
+    image: postgres:13
     volumes:
-      - my-db:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: erp
+      POSTGRES_USER: sutech
+      POSTGRES_PASSWORD: sutecherp
+    ports:
+      - "5432:5432"
   redis:
     image: redis:alpine
     restart: always
     ports:
       - "6379:6379"
 volumes:
-  my-db:
+  postgres_data:
